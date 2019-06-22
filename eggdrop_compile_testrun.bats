@@ -24,11 +24,12 @@
 }
 
 @test "Eggdrop connects to IRC" {
-  sleep 15
+  sleep 3
   run bash -c 'reply=$(echo {return -level 0 \$server} |nc localhost 45678); echo $reply | cut -d "{" -f2 | cut -d "}" -f1'
-  echo $reply
-  echo $output
-  [[ "$output" == *"freenode.net"* ]]
+  echo "reply = ${reply}"
+  echo "output = ${output}"
+  echo "status = $status"
+  [[ "${output}" == *"freenode.net"* ]]
   [ $status -eq 0 ]
 }  
 
