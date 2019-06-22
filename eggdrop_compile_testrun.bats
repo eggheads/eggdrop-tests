@@ -1,4 +1,5 @@
 @test "Eggdrop starts" {
+  skip
   cp $TRAVIS_BUILD_DIR/eggdrop-tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   cp $TRAVIS_BUILD_DIR/eggdrop-tests/testbot.conf $HOME/eggdrop/
   run bash -c "cd $HOME/eggdrop && ./eggdrop -m testbot.conf"
@@ -23,7 +24,7 @@
 }
 
 @test "Eggdrop connects to IRC" {
-  sleep 6
+  sleep 15
   run bash -c 'reply=$(echo {return -level 0 \$server} |nc localhost 45678); echo $reply | cut -d "{" -f2 | cut -d "}" -f1'
   echo $reply
   echo $output
