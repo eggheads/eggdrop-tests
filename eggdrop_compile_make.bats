@@ -1,7 +1,5 @@
 @test "make config" {
   cd $TRAVIS_BUILD_DIR
-  chown -R eggdrop:eggdrop *
-  chown -R eggdrop:eggdrop .*
   run bash -c "make config"
   [ $status -eq 0 ]
 }
