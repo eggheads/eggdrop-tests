@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER Geo <geo@eggheads.org>
 ARG branch=develop
+ENV DEBIAN_FRONTEND=noninteractive 
 RUN apt-get update && apt-get -y install wget unzip gcc tcl8.6 tcl8.6-dev openssl libssl-dev zlib1g-dev procps netcat git tar telnet gosu screen net-tools faketime
 
 RUN adduser --disabled-password --gecos "" eggdrop
