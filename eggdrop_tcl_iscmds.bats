@@ -7,7 +7,7 @@ iscmd00() {
 @test "Eggdrop setup" {
 #  cp $TRAVIS_BUILD_DIR/eggdrop.{key,crt} $HOME/eggdrop/
 #  cp $TRAVIS_BUILD_DIR/eggdrop.{key,crt} $HOME/noipv6/
-  run cp $TRAVIS_BUILD_DIR/eggdrop-tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
+  run cp /tmp/build/tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
   [ $status -eq 0 ]
   run cp /tmp/build/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
