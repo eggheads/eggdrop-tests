@@ -134,7 +134,7 @@
 }
 
 @test "matchattr rejects invalid channel flags" {
-  run bash -c 'echo "{matchattr foo |+s #foober}" |nc localhost 45678'
+  run bash -c 'echo "{matchattr foo |+j #foober}" |nc localhost 45678'
   [[ ${output} == *"1 {Unknown flag specified for matching}"* ]]
 }
 
