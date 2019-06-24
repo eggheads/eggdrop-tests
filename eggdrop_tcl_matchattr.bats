@@ -1,5 +1,5 @@
 @test "Eggdrop setup" {
-  cp /tmp/build/tests/eggdrop.{key,crt} /home/eggdrop/eggdrop/
+#  cp /tmp/build/tests/eggdrop.{key,crt} /home/eggdrop/eggdrop/
   run cp /tmp/build/tests/eggdrop_tcl_matchattr* /home/eggdrop/eggdrop/
   [ $status -eq 0 ]
   run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
