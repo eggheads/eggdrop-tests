@@ -15,7 +15,7 @@ RUN echo "hey there, cupcake"
 RUN git clone https://github.com/eggheads/eggdrop/ eggdrop-develop
 WORKDIR /home/eggdrop/eggdrop-develop
 RUN git checkout $branch
-RUN ./configure && make config && make && make install
-RUN ./configure --disable-tls && make config && make && make install DEST=~/nossl
-RUN ./configure --disable-ipv6 && make config && make && make install DEST=~/noipv6
+RUN ./configure && make config && make && make install && make sslsilent
+RUN ./configure --disable-tls && make config && make && make install DEST=~/nossl && make sslsilent DEST=~/nossl
+RUN ./configure --disable-ipv6 && make config && make && make install DEST=~/noipv6 && make sslsilent DEST=~/noipv6
 WORKDIR /home/eggdrop/eggdrop
