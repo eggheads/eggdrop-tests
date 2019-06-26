@@ -101,7 +101,7 @@ skip
 
 
 @test "Free Parking" {
-  run echo "{die}" |nc localhost 45678
+  run bash -c 'reply=$(echo {die} |nc localhost 45678); echo $reply | cut -d "{" -f2 | cut -d "}" -f1'
   [ $status -eq 0 ]
 }
 
