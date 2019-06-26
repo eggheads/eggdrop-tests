@@ -1,4 +1,10 @@
-@test "Setup test" {
+@test "Eggdrop setup" {
+  run cp /tmp/build/tests/eggdrop_chanset_inputvalidation* /home/eggdrop/eggdrop/
+  [ $status -eq 0 ]
+  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  [ $status -eq 0 ]
+  run ./eggdrop eggdrop_chanset_inputvalidation.conf
+  [ $status -eq 0 ]
   echo {channel add \#eggtest} |nc localhost 45678
 }
 
