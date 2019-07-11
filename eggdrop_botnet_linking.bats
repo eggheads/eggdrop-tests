@@ -3,7 +3,6 @@
   [ $status -eq 0 ]
   run cp /tmp/build/tests/eggdrop_botnet_linking* /home/eggdrop/nossl/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop.{key,crt} /home/eggdrop/nossl
   [ $status -eq 0 ]
   run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
   [ $status -eq 0 ]
