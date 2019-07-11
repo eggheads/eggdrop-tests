@@ -1,0 +1,10 @@
+#4v: eggdrop v1.8.2 -- testbot -- written Sun Aug 27 05:21:23 2017
+eggdrop    - jlmnoptx                
+--HOSTS -telnet!*@*
+--XTRA created 1503807928
+--PASS +k8LYo/jvHWH.
+--LASTON 1503811195 partyline
+--CONSOLE #testegg mcobx - 1 0 0
+::#testegg bans
+&&#testegg exempts
+$$#testegg invites

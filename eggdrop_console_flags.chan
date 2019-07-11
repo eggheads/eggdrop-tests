@@ -1,0 +1,3 @@
+#Dynamic Channel File for testbot (eggdrop v1.8.2) -- written Sun Aug 27 05:21:23 2017
+
+channel add #testegg { chanmode +tn idle-kick 0 stopnethack-mode 0 revenge-mode 0 need-op {} need-invite {} need-key {} need-unban {} need-limit {} flood-chan 10:20 flood-ctcp 3:30 flood-join 0:0 flood-kick 5:10 flood-deop 3:10 flood-nick 0:0 aop-delay 5:30 ban-type 3 ban-time 120 exempt-time 60 invite-time 60 +enforcebans +dynamicbans +userbans -autoop -autohalfop -bitch -greet -protectops -protecthalfops -protectfriends +dontkickops -statuslog -revenge -revengebot +autovoice -secret +shared +cycle -seen -inactive +dynamicexempts +userexempts +dynamicinvites +userinvites -nodesynch -static }
