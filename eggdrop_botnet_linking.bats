@@ -11,12 +11,12 @@
   run sed -i 's/45678/56789/g' /home/eggdrop/eggdrop/scripts/cmd_accept2.tcl
   run sed -i 's/45678/34567/g' /home/eggdrop/nossl/scripts/cmd_accept3.tcl
   [ $status -eq 0 ]
-  run ./eggdrop eggdrop_botnet_linking1.conf
+  run ./eggdrop eggdrop_botnet_linking1.conf 3>&-
   [ $status -eq 0 ]
-  run ./eggdrop eggdrop_botnet_linking2.conf
+  run ./eggdrop eggdrop_botnet_linking2.conf 3>&-
   [ $status -eq 0 ]
   cd ../nossl
-  run ./eggdrop eggdrop_botnet_linking-nossl.conf
+  run ./eggdrop eggdrop_botnet_linking-nossl.conf 3>&-
   [ $status -eq 0 ]
 ### Add bot1 to bot2
   run bash -c 'echo "{addbot bot1 localhost:1111}" |nc localhost 56789'
