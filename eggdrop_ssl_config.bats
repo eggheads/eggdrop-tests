@@ -10,14 +10,14 @@ teardown() {
 
 
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_ssl_config.* /home/eggdrop/eggdrop/
+  run cp /tmp/build/tests/eggdrop_ssl_config.* .
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp /tmp/build/tests/cmd_accept.tcl .
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop.{key,crt} /home/eggdrop/eggdrop/
+  run cp /tmp/build/tests/eggdrop.{key,crt} .
   [ $status -eq 0 ]
-  cp /home/eggdrop/eggdrop/eggdrop.key /home/eggdrop/eggdrop/eggdropz.key
-  cp /home/eggdrop/eggdrop/eggdrop.crt /home/eggdrop/eggdrop/eggdropz.crt
+  cp eggdrop.key eggdropz.key
+  cp eggdrop.crt eggdropz.crt
 }
 
 
@@ -85,12 +85,12 @@ skip
 }
 
 @test "Eggdrop dies if key file empty" {
-  touch /home/eggdrop/eggdrop/badkey.key
+  touch badkey.key
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"badkey.key\"' eggdrop_ssl_config.conf
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdrop.crt\"' eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
-  rm /home/eggdrop/eggdrop/badkey.key
-  [[ ${output} == *"ERROR: TLS: unable to load private key from badkey.key: error:0906D06C:PEM routines:PEM_read_bio:no start line"* ]]
+  rm badkey.key
+  [[ ${output} == *"ERROR: TLS: unable to load private key from badkey.key: error:"* ]]
   [ $status -eq 1 ]
 }
 
@@ -103,10 +103,19 @@ skip
   [ $status -eq 1 ]
 }
 
+@test "Eggdrop disconnects on no matching protocols" {
+  sed -i '/set ssl-protocols/c\set ssl-protocols "GEO"' eggdrop_ssl_config.conf
+  sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop.key\"' eggdrop_ssl_config.conf
+  run ./eggdrop -nt eggdrop_ssl_config.conf
+  ssltext=${output}
+  echo ${ssltext}
+  echo ${ssltext}|grep "tls_construct_client_hello:no protocols available";
+  [ $status -eq 0 ]
+}
+
 @test "Eggdrop chooses proper SSL/TLS protocol, Eggdrop higher than server" {
 # Freenode offers 1.0 and 1.2
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"' eggdrop_ssl_config.conf
-  sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop.key\"' eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
   echo ${ssltext}
@@ -126,7 +135,8 @@ skip
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1 TLSv1.1"' eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
-  echo ${ssltext}|grep "TLS: cipher used:"| grep TLSv1.0;
+  echo ${ssltext}|grep "TLS: cipher used:"| grep TLSv1.1;
+  echo $output
   [ $status -eq 0 ]
 }
 
@@ -138,10 +148,30 @@ skip
   [ $status -eq 0 ]
 }
 
-@test "Eggdrop disconnects on non-allowed cipher" {
-skip
+@test "Eggdrop disconnects on required cipher stronger than supported protocol" {
+  sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1"' eggdrop_ssl_config.conf
+  sed -i '/set ssl-ciphers/c\set ssl-ciphers "ECDHE-RSA-AES256-GCM-SHA384"' eggdrop_ssl_config.conf
+  run ./eggdrop -nt eggdrop_ssl_config.conf
+  ssltext=${output}
+  echo $output
+  echo ${ssltext}|grep "SSL routines:ssl_cipher_list_to_bytes:no ciphers available"
 }
 
-@test "DHparam" {
-skip
+@test "Eggdrop disconnects on required cipher weaker/disallowed by supported protocol" {
+  sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1.2"' eggdrop_ssl_config.conf
+  sed -i '/set ssl-ciphers/c\set ssl-ciphers "TLS_RSA_WITH_AES_128_CBC_SHA"' eggdrop_ssl_config.conf
+  run ./eggdrop -nt eggdrop_ssl_config.conf
+  ssltext=${output}
+  echo $output
+  echo ${ssltext}|grep "SSL routines:ssl_cipher_list_to_bytes:no ciphers available"
+}
+
+
+@test "Eggdrop warns on incorrect DHParam file" {
+  sed -i '/set ssl-protocols/c\set ssl-ciphers "DEFAULT"' eggdrop_ssl_config.conf
+  sed -i '/set ssl-dhparam/c\set ssl-dhparam "foo.pem"' eggdrop_ssl_config.conf
+  run ./eggdrop -nt eggdrop_ssl_config.conf
+  ssltext=${output}
+  echo ${output}
+  echo ${ssltext} |grep "ERROR: TLS: unable to open foo.pem: No such file or directory"
 }
