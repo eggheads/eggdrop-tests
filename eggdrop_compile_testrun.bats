@@ -1,6 +1,6 @@
 @test "Eggdrop starts" {
-  cp $TRAVIS_BUILD_DIR/eggdrop-tests/cmd_accept.tcl $HOME/eggdrop/scripts/
-  cp $TRAVIS_BUILD_DIR/eggdrop-tests/testbot.conf $HOME/eggdrop/
+  cp $HOME/eggdrop/eggdrop/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
+  cp $HOME/eggdrop/eggdrop/tests/testbot.conf $HOME/eggdrop/
   run bash -c "cd $HOME/eggdrop && ./eggdrop -m testbot.conf"
   [ $status -eq 0 ]
 }
