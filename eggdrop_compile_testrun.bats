@@ -1,6 +1,6 @@
 @test "Eggdrop starts" {
-  cp eggdrop-tests/cmd_accept.tcl $HOME/eggdrop/scripts/
-  cp eggdrop-tests/testbot.conf $HOME/eggdrop/
+  cp ~/eggdrop-tests/cmd_accept.tcl $HOME/eggdrop/scripts/
+  cp ~/eggdrop-tests/testbot.conf $HOME/eggdrop/
   run bash -c "cd $HOME/eggdrop && ./eggdrop -m testbot.conf"
   [ $status -eq 0 ]
 }
