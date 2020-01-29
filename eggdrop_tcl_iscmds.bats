@@ -5,9 +5,9 @@ iscmd00() {
 }
 
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
+  run cp $HOME/work/eggdrop/eggdrop/tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
+  run cp $HOME/work/eggdrop/eggdrop/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_tcl_iscmds.conf
   [ $status -eq 0 ]
