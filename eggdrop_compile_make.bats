@@ -21,6 +21,6 @@
   run bash -c "make sslsilent"
   echo $output
   [ $status -eq 0 ]
-  [ -a eggdrop.key ]
-  [ -a eggdrop.crt ]
+  [ -a $HOME/eggdrop/eggdrop.key ]
+  [ -a $HOME/eggdrop/eggdrop.crt ]
 }
