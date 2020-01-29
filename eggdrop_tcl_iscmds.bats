@@ -5,11 +5,15 @@ iscmd00() {
 }
 
 @test "Eggdrop setup" {
-  run cp $HOME/work/eggdrop/eggdrop/tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
+  cd $HOME/eggdrop
+  run cp $WORK_DIR/tests/eggdrop_tcl_iscmds* $HOME/eggdrop/
+  echo "1 $output"
   [ $status -eq 0 ]
-  run cp $HOME/work/eggdrop/eggdrop/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
+  echo "2 $output"
   [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_tcl_iscmds.conf
+  echo "3 $output"
   [ $status -eq 0 ]
   run bash -c 'echo "{channel add #foober}" |nc localhost 45678'
 }
