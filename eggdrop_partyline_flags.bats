@@ -8,6 +8,7 @@ NONCHANFLAGS="b b c h i j p s t u w"
 NBCFLAGS="a a b c d e f g h i j k l m n o p q r t u v w x y z"
 
 @test "Eggdrop setup" {
+  cd $HOME/eggdrop
   run cp $WORK_DIR/tests/eggdrop_partyline_flags* $HOME/eggdrop/
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/

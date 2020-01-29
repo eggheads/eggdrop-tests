@@ -1,4 +1,5 @@
 @test "Eggdrop setup" {
+  cd $HOME/eggdrop
   run cp $WORK_DIR/tests/eggdrop_partyline_bans* $HOME/eggdrop/
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
