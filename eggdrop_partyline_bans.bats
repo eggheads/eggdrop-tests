@@ -1,7 +1,7 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_partyline_bans* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_partyline_bans* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
   run ./eggdrop eggdrop_partyline_bans.conf
   [ $status -eq 0 ]
