@@ -13,6 +13,7 @@
 @test "make ssl cert (silent)" {
   cd $TRAVIS_BUILD_DIR
   run bash -c "make sslsilent"
+  echo $output
   [ $status -eq 0 ]
   [ -a eggdrop.key ]
   [ -a eggdrop.crt ]
