@@ -3,6 +3,7 @@
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
+  echo $output
   run ./eggdrop -m eggdrop_chanset_inputvalidation.conf 3>&-
   [ $status -eq 0 ]
   echo {channel add \#eggtest} |nc localhost 45678

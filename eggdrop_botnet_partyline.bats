@@ -12,10 +12,13 @@
   run sed -i 's/45678/34567/g' $HOME/nossl/scripts/cmd_accept3.tcl
   run sed -i 's/45678/54321/g' $HOME/noipv6/scripts/cmd_accept4.tcl
   [ $status -eq 0 ]
+  cd $HOME
   run ./eggdrop eggdrop_botnet_partyline1.conf 3>&-
+  echo $output
   [ $status -eq 0 ]
   cd ../nossl
   run ./eggdrop eggdrop_botnet_partyline-nossl.conf 3>&-
+  echo $output
   [ $status -eq 0 ]
   cd ../noipv6
   run ./eggdrop eggdrop_botnet_partyline-noipv6.conf 3>&-

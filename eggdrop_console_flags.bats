@@ -1,8 +1,10 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_console_flags.* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_console_flags.* $HOME/eggdrop/
+  echo $output
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
+  cd $HOME
   run ./eggdrop eggdrop_console_flags.conf 3>&-
   [ $status -eq 0 ]
   run bash -c 'echo "{adduser testuser1}" |nc localhost 45678'
@@ -142,7 +144,7 @@ skip
   if [ $? -eq 0 ]; then
     pkill eggdrop
   fi
-  if [ -e /home/eggdrop/eggdrop/tempuser.user ]; then
-    rm /home/eggdrop/eggdrop/tempsuer.user
+  if [ -e $HOME/eggdrop/tempuser.user ]; then
+    rm $HOME/eggdrop/tempsuer.user
   fi
 }
