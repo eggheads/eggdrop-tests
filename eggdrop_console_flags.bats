@@ -6,6 +6,7 @@
   [ $status -eq 0 ]
   cd $HOME/eggdrop
   run ./eggdrop eggdrop_console_flags.conf 3>&-
+  echo $output
   [ $status -eq 0 ]
   run bash -c 'echo "{adduser testuser1}" |nc localhost 45678'
   [[ "$output" == *"{1}"* ]]

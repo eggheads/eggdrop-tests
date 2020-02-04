@@ -14,10 +14,10 @@ teardown() {
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl .
   [ $status -eq 0 ]
-  run cp $WORK_DIR/tests/eggdrop.{key,crt} .
-  [ $status -eq 0 ]
-  cp eggdrop.key eggdropz.key
-  cp eggdrop.crt eggdropz.crt
+#  run cp $WORK_DIR/tests/eggdrop.{key,crt} .
+#  [ $status -eq 0 ]
+  cp $HOME/eggdrop/eggdrop.key $HOME/eggdrop/eggdropz.key
+  cp $HOME/eggdrop/eggdrop.crt $HOME/eggdrop/eggdropz.crt
 }
 
 

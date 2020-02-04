@@ -3,6 +3,7 @@
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
+  cd $HOME/eggdrop
   run ./eggdrop -m eggdrop_tcl_passwdok.conf
   [ $status -eq 0 ]
   run bash -c 'echo "{adduser foo}" |nc localhost 45678'

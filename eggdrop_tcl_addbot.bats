@@ -8,9 +8,10 @@
   cp $HOME/eggdrop/scripts/cmd_accept.tcl $HOME/noipv6/scripts/cmd_accept4.tcl
   run sed -i 's/45678/54321/g' $HOME/noipv6/scripts/cmd_accept4.tcl
   [ $status -eq 0 ]
+  cd $HOME/eggdrop
   run ./eggdrop -m eggdrop_tcl_addbot.conf
   [ $status -eq 0 ]
-  cd ../noipv6
+  cd $HOME/noipv6
   run ./eggdrop eggdrop_botnet_partyline-noipv6.conf
   [ $status -eq 0 ]
 }

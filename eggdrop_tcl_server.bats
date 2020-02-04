@@ -3,6 +3,7 @@
 #  [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl .
 #  [ $status -eq 0 ]
+  cd $HOME/eggdrop
   run ./eggdrop -m eggdrop_tcl_server.conf 3>&-
   [ $status -eq 0 ]
 }
