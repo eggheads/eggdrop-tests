@@ -20,3 +20,12 @@
   run bash -c "make install DEST=$HOME/noipv6"
   [ $status -eq 0 ]
 }
+
+@test "make ssl cert (silent)" {
+  cd $TRAVIS_BUILD_DIR
+  run bash -c "make sslsilent DEST=$HOME/noipv6"
+  echo $output
+  [ $status -eq 0 ]
+  [ -a $HOME/noipv6/eggdrop.key ]
+  [ -a $HOME/noipv6/eggdrop.crt ]
+}
