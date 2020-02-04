@@ -17,6 +17,6 @@
 
 @test "make install" {
   cd $TRAVIS_BUILD_DIR
-  run bash -c "make install DEST = $HOME/noipv6"
+  run bash -c "make install DEST=$HOME/noipv6"
   [ $status -eq 0 ]
 }

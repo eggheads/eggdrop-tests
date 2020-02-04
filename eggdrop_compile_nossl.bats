@@ -17,6 +17,6 @@
 
 @test "make install" {
   cd $TRAVIS_BUILD_DIR
-  run bash -c "make install DEST = $HOME/nossl"
+  run bash -c "make install DEST=$HOME/nossl"
   [ $status -eq 0 ]
 }
