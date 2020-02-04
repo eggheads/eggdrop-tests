@@ -5,7 +5,7 @@
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
-  cp $HOME/eggdrop/scripts/cmd_accept.tcl $HOME/noipv6/scripts/cmd_accept4.tcl
+  cp $WORK_DIR/tests/cmd_accept.tcl $HOME/noipv6/scripts/cmd_accept4.tcl
   run sed -i 's/45678/54321/g' $HOME/noipv6/scripts/cmd_accept4.tcl
   [ $status -eq 0 ]
   cd $HOME/eggdrop
