@@ -4,7 +4,7 @@
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
-  cd $HOME
+  cd $HOME/eggdrop
   run ./eggdrop eggdrop_console_flags.conf 3>&-
   [ $status -eq 0 ]
   run bash -c 'echo "{adduser testuser1}" |nc localhost 45678'
