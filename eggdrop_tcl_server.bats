@@ -1,7 +1,7 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_tcl_server* .
+  run cp $WORK_DIR/tests/eggdrop_tcl_server* .
 #  [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl .
+  run cp $WORK_DIR/tests/cmd_accept.tcl .
 #  [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_tcl_server.conf 3>&-
   [ $status -eq 0 ]

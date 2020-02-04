@@ -3,18 +3,18 @@ teardown() {
   if [ $? -eq 0 ]; then
     pkill eggdrop
   fi
-  if [ -e /home/eggdrop/eggdrop/tempuser.user ]; then
-    rm /home/eggdrop/eggdrop/tempsuer.user
+  if [ -e $HOME/eggdrop/tempuser.user ]; then
+    rm $HOME/eggdrop/tempsuer.user
   fi
 }
 
 
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_ssl_config.* .
+  run cp $WORK_DIR/tests/eggdrop_ssl_config.* .
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl .
+  run cp $WORK_DIR/tests/cmd_accept.tcl .
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop.{key,crt} .
+  run cp $WORK_DIR/tests/eggdrop.{key,crt} .
   [ $status -eq 0 ]
   cp eggdrop.key eggdropz.key
   cp eggdrop.crt eggdropz.crt

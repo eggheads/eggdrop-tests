@@ -1,7 +1,7 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_chanset_inputvalidation* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_chanset_inputvalidation* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_chanset_inputvalidation.conf 3>&-
   [ $status -eq 0 ]

@@ -1,12 +1,12 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_tcl_addbot* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_tcl_addbot* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop_botnet_partyline-noipv6* /home/eggdrop/noipv6/
+  run cp $WORK_DIR/tests/eggdrop_botnet_partyline-noipv6* $HOME/noipv6/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
-  cp /home/eggdrop/eggdrop/scripts/cmd_accept.tcl /home/eggdrop/noipv6/scripts/cmd_accept4.tcl
-  run sed -i 's/45678/54321/g' /home/eggdrop/noipv6/scripts/cmd_accept4.tcl
+  cp $HOME/eggdrop/scripts/cmd_accept.tcl $HOME/noipv6/scripts/cmd_accept4.tcl
+  run sed -i 's/45678/54321/g' $HOME/noipv6/scripts/cmd_accept4.tcl
   [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_tcl_addbot.conf
   [ $status -eq 0 ]
@@ -202,7 +202,7 @@ skip
   if [ $? -eq 0 ]; then
     pkill eggdrop
   fi
-  if [ -e /home/eggdrop/eggdrop/tempuser.user ]; then
-    rm /home/eggdrop/eggdrop/tempsuer.user
+  if [ -e $HOME/eggdrop/tempuser.user ]; then
+    rm $HOME/eggdrop/tempsuer.user
   fi
 }

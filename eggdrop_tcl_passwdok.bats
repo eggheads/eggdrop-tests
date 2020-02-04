@@ -1,7 +1,7 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_tcl_passwdok* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_tcl_passwdok* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
   run ./eggdrop -m eggdrop_tcl_passwdok.conf
   [ $status -eq 0 ]

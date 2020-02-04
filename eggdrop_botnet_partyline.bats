@@ -1,11 +1,11 @@
 @test "Eggdrop setup" {
-  run cp /tmp/build/tests/eggdrop_botnet_partyline* /home/eggdrop/eggdrop/
+  run cp $WORK_DIR/tests/eggdrop_botnet_partyline* $HOME/eggdrop/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop_botnet_partyline-nossl* /home/eggdrop/nossl/
+  run cp $WORK_DIR/tests/eggdrop_botnet_partyline-nossl* $HOME/nossl/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/eggdrop_botnet_partyline-noipv6* /home/eggdrop/noipv6/
+  run cp $WORK_DIR/tests/eggdrop_botnet_partyline-noipv6* $HOME/noipv6/
   [ $status -eq 0 ]
-  run cp /tmp/build/tests/cmd_accept.tcl /home/eggdrop/eggdrop/scripts/
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
   cp /home/eggdrop/eggdrop/scripts/cmd_accept.tcl /home/eggdrop/nossl/scripts/cmd_accept3.tcl
   cp /home/eggdrop/eggdrop/scripts/cmd_accept.tcl /home/eggdrop/noipv6/scripts/cmd_accept4.tcl
