@@ -7,10 +7,10 @@
   [ $status -eq 0 ]
   run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop/scripts/
   [ $status -eq 0 ]
-  cp /home/eggdrop/eggdrop/scripts/cmd_accept.tcl /home/eggdrop/nossl/scripts/cmd_accept3.tcl
-  cp /home/eggdrop/eggdrop/scripts/cmd_accept.tcl /home/eggdrop/noipv6/scripts/cmd_accept4.tcl
-  run sed -i 's/45678/34567/g' /home/eggdrop/nossl/scripts/cmd_accept3.tcl
-  run sed -i 's/45678/54321/g' /home/eggdrop/noipv6/scripts/cmd_accept4.tcl
+  cp $WORK_DIR/tests/cmd_accept.tcl $HOME/nossl/scripts/cmd_accept3.tcl
+  cp $HOME/eggdrop/scripts/cmd_accept.tcl $HOME/noipv6/scripts/cmd_accept4.tcl
+  run sed -i 's/45678/34567/g' $HOME/nossl/scripts/cmd_accept3.tcl
+  run sed -i 's/45678/54321/g' $HOME/noipv6/scripts/cmd_accept4.tcl
   [ $status -eq 0 ]
   run ./eggdrop eggdrop_botnet_partyline1.conf 3>&-
   [ $status -eq 0 ]
@@ -337,7 +337,7 @@
   if [ $? -eq 0 ]; then
     pkill eggdrop
   fi
-  if [ -e /home/eggdrop/eggdrop/tempuser.user ]; then
-    rm /home/eggdrop/eggdrop/tempsuer.user
+  if [ -e $HOME/eggdrop/tempuser.user ]; then
+    rm $HOME/eggdrop/tempsuer.user
   fi
 }
