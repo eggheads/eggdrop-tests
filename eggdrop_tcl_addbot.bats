@@ -13,6 +13,7 @@
   [ $status -eq 0 ]
   cd $HOME/noipv6
   run ./eggdrop eggdrop_botnet_partyline-noipv6.conf
+  echo $output
   [ $status -eq 0 ]
 }
 

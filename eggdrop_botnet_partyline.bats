@@ -16,11 +16,11 @@
   run ./eggdrop eggdrop_botnet_partyline1.conf 3>&-
   echo $output
   [ $status -eq 0 ]
-  cd ../nossl
+  cd $HOME/nossl
   run ./eggdrop eggdrop_botnet_partyline-nossl.conf 3>&-
   echo $output
   [ $status -eq 0 ]
-  cd ../noipv6
+  cd $HOME/noipv6
   run ./eggdrop eggdrop_botnet_partyline-noipv6.conf 3>&-
   echo $output
   [ $status -eq 0 ]
@@ -266,7 +266,7 @@
 }
 
 @test "Eggdrop denies changing a bot to more than 2 ports" {
-  echo "{addbot testbot 9.9.9.9}" |nc localhost 45678
+  echo "{addbot testbot 9.9.9.9}" |nc localhost 34567
   run bash -c '{ echo "testuser1"; echo "eggdrop"; echo ".chaddr testbot 1.1.1.1 2222/5555/6666"; sleep 2; } | telnet localhost 3311'
   [[ ${output} == *"You've supplied more than 2 ports, make up your mind."* ]]
 }
