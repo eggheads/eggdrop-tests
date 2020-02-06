@@ -74,3 +74,13 @@
   FOO=$(echo $output| cut -d " " -f 15)
   [ $FOO == "0:8" ]
 }
+
+@test "Kill Eggdrop" {
+  ps x|grep "[e]ggdrop "
+  if [ $? -eq 0 ]; then
+    pkill eggdrop
+  fi
+  if [ -e $HOME/eggdrop/tempuser.user ]; then
+    rm $HOME/eggdrop/tempsuer.user
+  fi
+}
