@@ -1,4 +1,5 @@
 @test "Eggdrop setup" {
+  export $PASS
   run cp $WORK_DIR/tests/eggdrop_console_flags.* $HOME/eggdrop/
   echo $output
   [ $status -eq 0 ]
