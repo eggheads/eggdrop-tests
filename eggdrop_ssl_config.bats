@@ -18,6 +18,7 @@ teardown() {
 #  [ $status -eq 0 ]
   cp $HOME/eggdrop/eggdrop.key $HOME/eggdrop/eggdropz.key
   cp $HOME/eggdrop/eggdrop.crt $HOME/eggdrop/eggdropz.crt
+  cd $HOME/eggdrop
 }
 
 
