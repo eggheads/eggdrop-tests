@@ -40,12 +40,13 @@
   echo '{killban *!*@foo.com}' |nc localhost 45678
   run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1824d'; echo '.bans all'; sleep 2; } |telnet localhost 1111"
   [[ ${output} == *'*!*@foo.com (expires in 1824 days)'* ]]
-}
+
 
 
 @test "Eggdrop rejects bans greater than 1825 years via multiple hour/day/month/year inputs" {
   echo '{killban *!*@foo.com}' |nc localhost 45678 
   run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %6y'; sleep 2; } |telnet localhost 1111"
+  echo $output
   [[ ${output} == *'Ban expiration time cannot exceed 5 years (1825 days)'* ]]
   echo '{killban *!*@foo.com}' |nc localhost 45678
   run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1826d'; sleep 2; } |telnet localhost 1111"
@@ -58,6 +59,7 @@
   [[ ${output} == *'Ban expiration time cannot exceed 5 years (1825 days)'* ]]
   echo '{killban *!*@foo.com}' |nc localhost 45678 
   run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %2628001m'; sleep 2; } |telnet localhost 1111"
+  echo $output
   [[ ${output} == *'Ban expiration time cannot exceed 5 years (1825 days)'* ]]
 }
 
