@@ -1,4 +1,5 @@
 @test "Eggdrop setup" {
+  export PASS
   cd $HOME/eggdrop
   run cp $WORK_DIR/tests/eggdrop_partyline_bans* $HOME/eggdrop/
   [ $status -eq 0 ]
@@ -33,10 +34,11 @@
 
 @test "Eggdrop accepts bans <=1825 days" {
   echo '{killban *!*@foo.com}' |nc localhost 45678
-  run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1825d'; sleep 2; } |telnet localhost 1111"
-  [[ ${output} == *'*!*@foo.com (expires in 1825 days)'* ]]
+  run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1825d'; echo '.bans all'; sleep 2; } |telnet localhost 1111"
+  echo $output
+  [[ ${output} == *'*!*@foo.com (expires in 1824 days)'* ]]
   echo '{killban *!*@foo.com}' |nc localhost 45678
-  run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1824d'; sleep 2; } |telnet localhost 1111"
+  run bash -c "{ echo ;testuser1'; echo $PASS; echo '.+ban *!*@foo.com %1824d'; echo '.bans all'; sleep 2; } |telnet localhost 1111"
   [[ ${output} == *'*!*@foo.com (expires in 1824 days)'* ]]
 }
 
