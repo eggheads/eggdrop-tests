@@ -24,6 +24,7 @@ teardown() {
 
 @test "Eggdrop runs/uses proper SSL keys" {
 skip
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdropz.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdropz.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -33,6 +34,7 @@ skip
 
 
 @test "Eggdrop dies if user-specified .key file is missing/incorrect" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdrop.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"sdfsdf.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -43,6 +45,7 @@ skip
 
 
 @test "Eggdrop dies if user-specified .crt file is missing/incorrect" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\set ssl-certificate \"sdfsdf.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -52,6 +55,7 @@ skip
 
 
 @test "Eggdrop runs if SSL .key and .crt file are commented" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\#set ssl-certificate \"eggdrop.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\#set ssl-privatekey \"eggdrop.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -60,6 +64,7 @@ skip
 
 
 @test "Eggdrop runs if SSL .key and .crt file are set to \"\"" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\set ssl-certificate \"\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -68,6 +73,7 @@ skip
 
 
 @test "Eggdrop dies if .crt is specified/present, but .key is commented" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdrop.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\#set ssl-privatekey \"\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf 2>&1
@@ -77,6 +83,7 @@ skip
 
 
 @test "Eggdrop dies if .key is specified/present, but .crt is commented" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-certificate/c\#set ssl-certificate \"\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf 2>&1
@@ -86,6 +93,7 @@ skip
 }
 
 @test "Eggdrop dies if key file empty" {
+  cd $HOME/eggdrop
   touch badkey.key
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"badkey.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdrop.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
@@ -96,6 +104,7 @@ skip
 }
 
 @test "Eggdrop dies if key/crt file do not match" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop_ssl_config.badpair.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-certificate/c\set ssl-certificate \"eggdrop.crt\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop eggdrop_ssl_config.conf
@@ -105,6 +114,7 @@ skip
 }
 
 @test "Eggdrop disconnects on no matching protocols" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "GEO"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-privatekey/c\set ssl-privatekey \"eggdrop.key\"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
@@ -116,6 +126,7 @@ skip
 
 @test "Eggdrop chooses proper SSL/TLS protocol, Eggdrop higher than server" {
 # Freenode offers 1.0 and 1.2
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
@@ -125,6 +136,7 @@ skip
 }
 
 @test "Eggdrop chooses proper SSL/TLS protocol, Eggdrop same as server" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1 TLSv1.1 TLSv1.2"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
@@ -133,6 +145,7 @@ skip
 }
 
 @test "Eggdrop chooses proper SSL/TLS protocol, Eggdrop lower than server" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1 TLSv1.1"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
@@ -142,6 +155,7 @@ skip
 }
 
 @test "Eggdrop uses specified SSL/TLS cipher" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-ciphers/c\set ssl-ciphers "ECDHE-RSA-AES256-SHA"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
   ssltext=${output}
@@ -150,6 +164,7 @@ skip
 }
 
 @test "Eggdrop disconnects on required cipher stronger than supported protocol" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-ciphers/c\set ssl-ciphers "ECDHE-RSA-AES256-GCM-SHA384"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
@@ -159,6 +174,7 @@ skip
 }
 
 @test "Eggdrop disconnects on required cipher weaker/disallowed by supported protocol" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-protocols "TLSv1.2"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-ciphers/c\set ssl-ciphers "TLS_RSA_WITH_AES_128_CBC_SHA"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
@@ -169,6 +185,7 @@ skip
 
 
 @test "Eggdrop warns on incorrect DHParam file" {
+  cd $HOME/eggdrop
   sed -i '/set ssl-protocols/c\set ssl-ciphers "DEFAULT"' $HOME/eggdrop/eggdrop_ssl_config.conf
   sed -i '/set ssl-dhparam/c\set ssl-dhparam "foo.pem"' $HOME/eggdrop/eggdrop_ssl_config.conf
   run ./eggdrop -nt eggdrop_ssl_config.conf
