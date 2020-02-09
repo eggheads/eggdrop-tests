@@ -10,11 +10,11 @@ teardown() {
 
 
 @test "Eggdrop setup" {
-  run cp $WORK_DIR/tests/eggdrop_ssl_config.* .
+  run cp $WORK_DIR/tests/eggdrop_ssl_config.* $HOME/eggdrop
   [ $status -eq 0 ]
-  run cp $WORK_DIR/tests/cmd_accept.tcl .
+  run cp $WORK_DIR/tests/cmd_accept.tcl $HOME/eggdrop
   [ $status -eq 0 ]
-#  run cp $WORK_DIR/tests/eggdrop.{key,crt} .
+#  run cp $WORK_DIR/tests/eggdrop.{key,crt} $HOME/eggdrop
 #  [ $status -eq 0 ]
   cp $HOME/eggdrop/eggdrop.key $HOME/eggdrop/eggdropz.key
   cp $HOME/eggdrop/eggdrop.crt $HOME/eggdrop/eggdropz.crt
